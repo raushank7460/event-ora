@@ -2,6 +2,7 @@ const express=require("express");
 const dotenv=require("dotenv").config();
 const cors=require("cors");
 const connectDB = require("./config/db");
+const authRoutes=require("./routes/auth");
 
 const app=express();
 
@@ -13,7 +14,9 @@ app.use(express.urlencoded({extended:true}));
 
 app.get("/",(req,res)=>{
     res.send(`API IS WORKING....`);
-})
+});
+
+app.use("/api/auth",authRoutes);
 
 const port=process.env.PORT||5005;
 app.listen(port,()=>{
